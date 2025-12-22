@@ -3,25 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <title>MedIntel Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    form { background: white; padding: 20px; border-radius: 8px; max-width: 400px; }
+    input, button { display: block; width: 100%; margin: 10px 0; padding: 10px; }
+    button { background: #007bff; color: white; border: none; }
+    #result { margin-top: 20px; padding: 10px; background: #e9ecef; }
+  </style>
 </head>
 <body>
-  <h1>MedIntel AI Prediction Demo</h1>
-  <form id="predictForm">
-    <input type="text" placeholder="Enter symptoms (e.g., fever, cough)" required>
-    <button type="submit">Get Prediction</button>
+  <h1>MedIntel Demo: NeuroGrid for Post-Op Care</h1>
+  <form id="assessForm">
+    <input type="text" placeholder="Agent ID" id="agentId" required>
+    <input type="text" placeholder="Post-op data (e.g., pain level)" id="data" required>
+    <button type="submit">Assess with Agent</button>
+  </form>
+  <form id="verifyForm">
+    <input type="text" placeholder="Computation" id="computation" required>
+    <input type="text" placeholder="Biomed data" id="biomedData" required>
+    <button type="submit">Verify Research</button>
   </form>
   <div id="result"></div>
   <script>
-    document.getElementById('predictForm').addEventListener('submit', async (e) => {
+    document.getElementById('assessForm').addEventListener('submit', async (e) => {
       e.preventDefault();
-      const data = e.target[0].value;
-      const response = await fetch('/predict', {
+      const response = await fetch('/agent/assess', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ data })
+        body: JSON.stringify({ agentId: e.target[0].value, data: e.target[1].value })
       });
       const result = await response.json();
-      document.getElementById('result').innerText = result.prediction ? `Prediction: ${result.prediction}` : 'Error: ' + result.error;
+      document.getElementById('result').innerHTML = JSON.stringify(result);
+    });
+    document.getElementById('verifyForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const response = await fetch('/research/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ computation: e.target[0].value, data: e.target[1].value })
+      });
+      const result = await response.json();
+      document.getElementById('result').innerHTML = JSON.stringify(result);
     });
   </script>
 </body>
