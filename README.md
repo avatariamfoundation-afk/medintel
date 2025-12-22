@@ -1,35 +1,45 @@
-# NeuroGrid MedIntel
+# NeuroGrid-Core: Decentralized Intelligence for AI Agents and Scientific Research in Post-Operative Care
 
-NeuroGrid MedIntel is the AI engine for post-operative care and Remote Patient Monitoring (RPM). It integrates wearable and subcutaneous device telemetry, runs generative and predictive models (G-PAS), and produces clinician-ready treatment pathways and alerts. Data flows are privacy-preserving; outputs are verifiable and auditable.
-
-Key focus:
-- Wearable + subcutaneous device ingestion
-- Predictive models for complications and readmission
-- Generative treatment plans and HCP copilot outputs
-- Integration points for hospital systems and device vendors
-
----
-
-# MedIntel: AI-Powered Medical Intelligence on BNB Chain
-
-MedIntel leverages Web3 for secure, decentralized AI-driven medical data analytics and predictions. Aimed at hackathon victory on BNB Chain, it forms the healthcare pillar of my company's AI ecosystem.
+NeuroGrid is a hybrid AI x DeSci network designed for autonomous agents, scientific compute, and decentralized knowledge. It integrates AI components (autonomous agents, decentralized compute routing, identity, receipts, inference, distributed workloads) with DeSci elements (research networks, verifiable scientific computation, decentralized biomed data layers, reproducibility receipts, open-data knowledge graph, federation of research agents, human-machine co-labs, bridges to Aethera BioSync) to support post-operative care. Built on BNB Chain for the hackathon, it forms the foundation of the Avatariam Foundation AFK ecosystem, enabling secure, scalable intelligence for recovery and research.
 
 ## Features
-- Smart contracts for encrypted medical data storage.
-- AI predictions via off-chain models.
-- Privacy-focused with ZKP hints.
+- **AI Components**: Autonomous agents for task automation, decentralized compute routing for efficient workloads, identity management, receipts for transactions, inference engines for predictions, and distributed processing.
+- **DeSci Components**: Research networks for collaboration, verifiable computation for biomedical data, decentralized layers for data sharing, reproducibility receipts, open-data knowledge graphs, federated agents, human-machine co-labs, and bridges to Aethera BioSync.
+- **Post-Operative Focus**: Tailored for recovery monitoring, complication prediction, and research-driven care plans.
+- **Security**: Encrypted data, audit logs, and ZKP for privacy.
+- **Scalability**: P2P networking, cross-chain support, and token incentives.
 
 ## Quick Start
-1. Clone: `git clone https://github.com/avatariamfoundation-afk/medintel.git`
-2. Install: `npm install`
-3. Configure: Set up `.env`.
-4. Deploy: `npx hardhat run scripts/deploy.js --network testnet`
-5. Demo: Use the web app to upload sample data and view predictions.
+1. Clone: `git clone https://github.com/avatariamfoundation-afk/neurogrid-core.git`
+2. Install: `npm install` (and `pip install requests python-dotenv` for AI)
+3. Configure: Copy `.env.example` to `.env` and fill in keys.
+4. Deploy: `npm run deploy`
+5. Start: `npm start`
+6. Demo: `npm run demo` and open http://localhost:8080
 
 ## Demo
-See the [live demo](link-to-demo) on BNB Testnet.
+Live demo: [link-to-deployed-demo] (e.g., on BNB Testnet). Test agent routing and research computation.
+
+## API
+See `docs/api.md` for endpoints on agents, compute, and research.
+
+## Testing
+- API: `npm run test-api`
+- Contracts: `npm test`
+- Lint: `npm run lint`
+
+## Security and Compliance
+- AES encryption and ZKPs for data.
+- Audit logs for reproducibility.
+- Alignment with biomedical standards.
 
 ## Future Roadmap
-- Full HIPAA compliance and cross-chain data sharing.
+- Full integration with Aethera BioSync.
+- Advanced human-machine co-labs.
+- Global federation of research agents.
 
-Open issues for feedback.
+## Contributing
+Open issues or PRs. Built by Avatariam Foundation AFK.
+
+For support, contact [your-email].
+```### Fully Optimized integration/ai.py for NeuroGrid-Core
