@@ -1,4 +1,4 @@
-# ON_CHAIN_REGISTRY.md  
+# ON-CHAIN_REGISTRY.md  
 **Clinical AI Registry Anchoring & Traceability Specification**
 
 ---
