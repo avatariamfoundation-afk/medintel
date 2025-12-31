@@ -279,6 +279,23 @@ Failure constitutes a usability defect.
 
 ---
 
+## 13. Cost Ceiling Awareness (UI/UX)
+
+MedIntel interfaces MUST be cost-aware by design.
+
+The UI:
+- MUST NOT trigger direct on-chain writes
+- MUST batch user actions where applicable
+- MUST warn users when actions approach soft cost ceilings
+
+All interface behavior is constrained by:
+
+→ `COST_CEILING_POLICY.md`
+
+User experience optimization MUST NEVER violate hard cost ceilings.
+
+---
+
 ## Status
 
 **Active — Binding MedIntel Interface and Usability Standard**
