@@ -1,1 +1,18 @@
-
+# Bandit configuration for MedIntel
+exclude_dirs:
+  - venv/
+  - __pycache__/
+  - .git/
+  - security/audit_reports/
+  - node_modules/  # If any JS files
+include:
+  - "*.py"
+skips:
+  - B101  # Skip assert statements (common in tests)
+  - B601  # Skip subprocess calls (used safely in audit.py)
+  - B603  # Skip subprocess without shell (if applicable)
+severity:
+  high:
+    confidence: HIGH
+  medium:
+    confidence: MEDIUM
