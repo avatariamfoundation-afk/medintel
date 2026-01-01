@@ -1,1 +1,101 @@
+openapi: 3.0.3
+info:
+  title: NeuroGrid MedIntel API
+  description: Clinical intelligence interface for MedIntel consumers.
+  version: 1.0.0
+
+servers:
+  - url: https://api.neurogrid.ai/v1
+
+tags:
+  - name: Health
+  - name: Inference
+  - name: Validation
+  - name: Registry
+
+paths:
+
+  /health:
+    get:
+      tags: [Health]
+      summary: System health check
+      responses:
+        "200":
+          description: Service operational
+
+  /inference/submit:
+    post:
+      tags: [Inference]
+      summary: Submit clinical inference request
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/InferenceRequest"
+      responses:
+        "202":
+          description: Inference accepted
+
+  /inference/{requestId}:
+    get:
+      tags: [Inference]
+      summary: Retrieve inference result
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Inference result returned
+
+  /validation/submit:
+    post:
+      tags: [Validation]
+      summary: Submit validation artifact
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ValidationSubmission"
+      responses:
+        "202":
+          description: Validation anchored
+
+  /registry/records:
+    get:
+      tags: [Registry]
+      summary: List registry records
+      parameters:
+        - name: domain
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Records returned
+
+components:
+  schemas:
+
+    InferenceRequest:
+      type: object
+      required: [patientGroup, question]
+      properties:
+        patientGroup:
+          type: string
+        question:
+          type: string
+
+    ValidationSubmission:
+      type: object
+      required: [artifactHash, validationType]
+      properties:
+        artifactHash:
+          type: string
+        validationType:
+          type: string
 
