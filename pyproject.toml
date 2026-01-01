@@ -1,1 +1,6 @@
+[tool.bandit]
+exclude_dirs = ["tests", "venv", ".venv"]
+skips = ["B101"]
+severity = "MEDIUM"
+confidence = "MEDIUM"
 
