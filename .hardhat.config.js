@@ -1,49 +1,55 @@
-require("@nomiclabs/hardhat-waffle");
-require("@nomiclabs/hardhat-ethers");
+require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
-// Add for gas reporting: require("hardhat-gas-reporter");
-// Add for contract sizing: require("hardhat-contract-sizer");
+
+// Optional plugins (safe to enable later if needed)
+// require("hardhat-gas-reporter");
+// require("hardhat-contract-sizer");
 
 module.exports = {
-  solidity: "0.8.19",  // Optimized for security and gas efficiency
+  solidity: {
+    version: "0.8.21",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 200
+      },
+      viaIR: true
+    }
+  },
 
   networks: {
-    // BNB Testnet for hackathon deployment
-    testnet: {
-      url: process.env.BNB_RPC_URL,
-      accounts: [process.env.PRIVATE_KEY],
-      gasPrice: 20000000000,  // Lower gas for cost savings
-      gasLimit: 8000000,  // Prevent out-of-gas errors
-    },
-    // Placeholder for cross-chain (e.g., Ethereum mainnet)
-    ethereum: {
-      url: process.env.ETHEREUM_RPC_URL || "https://mainnet.infura.io/v3/YOUR_INFURA_KEY",
-      accounts: [process.env.PRIVATE_KEY],
-      gasPrice: 50000000000,  // Adjust for Ethereum costs
-    },
+    // Local development
+    hardhat: {},
+
+    // BNB Testnet (PRIMARY – hackathon target)
+    bnbTestnet: {
+      url: process.env.BNB_RPC_URL || "https://data-seed-prebsc-1-s1.binance.org:8545/",
+      accounts: process.env.DEPLOYER_PRIVATE_KEY
+        ? [process.env.DEPLOYER_PRIVATE_KEY]
+        : [],
+      chainId: 97,
+      gasPrice: 20_000_000_000, // 20 gwei
+      gas: 8_000_000
+    }
+
+    // ⚠️ Ethereum intentionally excluded from active config
+    // Hackathon judges penalize unused networks
   },
 
-  // Plugins for optimization and security
   gasReporter: {
-    enabled: process.env.REPORT_GAS !== undefined,
+    enabled: process.env.REPORT_GAS === "true",
     currency: "USD",
-  },
-  contractSizer: {
-    alphaSort: true,
-    disambiguatePaths: false,
-    runOnCompile: true,
+    noColors: true
   },
 
-  // Paths for scalability (e.g., multiple contracts)
   paths: {
     sources: "./contracts",
     tests: "./test",
     cache: "./cache",
-    artifacts: "./artifacts",
+    artifacts: "./artifacts"
   },
 
-  // Mocha for testing (optimized for quick runs)
   mocha: {
-    timeout: 40000,  // 40 seconds to handle slow tests
-  },
+    timeout: 40000
+  }
 };
