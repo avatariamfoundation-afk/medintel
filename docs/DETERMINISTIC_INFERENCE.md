@@ -237,12 +237,3 @@ Deterministic inference aligns with:
 
 ---
 
-## 16. File Location
-/medintel/
-└── inference/
-└── DETERMINISTIC_INFERENCE.md
-
----
-
-**End of File**
-
