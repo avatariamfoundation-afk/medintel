@@ -222,10 +222,4 @@ Audit trails are immutable.
 
 ---
 
-## 16. File Location
-
-/medintel/security/SECURITY_MODEL.md
-
----
-
 **End of Document**
