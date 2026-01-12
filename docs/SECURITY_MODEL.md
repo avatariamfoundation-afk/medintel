@@ -1,225 +1,227 @@
 # SECURITY_MODEL.md
 
-## MedIntel Security Model — Deterministic, Zero-Trust, Audit-Grade
+## 1. Purpose
 
-**Status:** Mandatory  
-**Applies To:** MedIntel Inference Layer, Telemetry Layer, Artifact Emission, Cross-Chain Relays  
-**Security Posture:** Zero Trust + Deterministic Enforcement
+This document defines the **enforceable security posture** of MedIntel.  
+It specifies **what must be protected, from whom, how, and why**, in a way that is:
 
----
+- Auditable
+- Testable
+- Judge-readable
+- Post-hackathon extensible
 
-## 1. Security Objectives
-
-The MedIntel security model is designed to guarantee:
-
-1. Deterministic execution integrity  
-2. Non-repudiation of inference and governance actions  
-3. Resistance to Byzantine, malicious, and faulty actors  
-4. Audit-grade traceability for regulators and stakeholders  
-5. Minimal trust assumptions across nodes and chains  
-
-Security is enforced **by protocol design**, not by operator behavior.
+This is a **pass/fail document**, not a philosophy.
 
 ---
 
-## 2. Threat Model
+## 2. Security Objectives (Non-Negotiable)
 
-### 2.1 In-Scope Threats
+MedIntel enforces the following guarantees:
 
-- Malicious inference nodes  
-- Data poisoning attempts  
-- Non-deterministic execution drift  
-- Forged artifacts or telemetry  
-- Replay attacks  
-- Cross-chain message tampering  
-- Privilege escalation attempts  
+1. **No patient-identifiable data at rest**
+2. **Deterministic, reproducible intelligence**
+3. **Strict read/write boundaries**
+4. **Verifiable execution lineage**
+5. **Regulatory-aligned auditability (LGPD/GDPR-ready)**
 
-### 2.2 Out-of-Scope Threats
-
-- Physical hardware compromise  
-- OS-level zero-day exploits  
-- Nation-state physical coercion  
-
-These are mitigated operationally, not at protocol level.
+Failure in any objective is a **system-level failure**.
 
 ---
 
-## 3. Zero-Trust Assumptions
+## 3. Threat Model
 
-The system assumes:
+### 3.1 In-Scope Threats
 
-- No node is trusted by default  
-- No off-chain computation is trusted without proof  
-- No artifact is valid without deterministic verification  
-- No telemetry is valid without cryptographic linkage  
-
-Trust is **earned per action**, not per identity.
-
----
-
-## 4. Identity & Authentication
-
-### 4.1 Node Identity
-
-Each node is identified by:
-- Public key (Ed25519 or secp256k1)
-- Deterministic node ID hash
-
-Node identity is immutable once registered.
+| Threat | Description |
+|------|-------------|
+| Data leakage | Exposure of sensitive medical inputs |
+| Model tampering | Unauthorized model or output manipulation |
+| Replay attacks | Reuse of inputs to falsify intelligence |
+| API abuse | Unauthorized data extraction |
+| Supply chain | Malicious dependency injection |
 
 ---
 
-### 4.2 Authentication Rules
+### 3.2 Out-of-Scope (Explicit)
 
-All actions MUST be:
-- Signed by the node’s private key
-- Verifiable on-chain or via registry
-- Linked to deterministic telemetry
+- Physical data center compromise  
+- Nation-state attacks  
+- Side-channel hardware attacks  
 
-Unsigned actions are rejected.
-
----
-
-## 5. Authorization & Roles
-
-### 5.1 Role Separation
-
-| Role | Capability |
-|----|-----------|
-| Inference Node | Execute inference |
-| Validator | Verify determinism |
-| Registry | Store artifact references |
-| Governance | Modify protocol parameters |
-
-No role overlap is allowed without governance approval.
+These are documented but not addressed at hackathon scope.
 
 ---
 
-### 5.2 Least Privilege
+## 4. Trust Boundaries
 
-Each role receives:
-- Minimum permissions required
-- Explicit revocation paths
-- No implicit authority inheritance
+MedIntel defines **four hard trust zones**:
 
----
+[ Ingestion ] → [ Canonical Core ] → [ Intelligence Layer ] → [ API Surface ]
 
-## 6. Deterministic Execution Enforcement
+yaml
+Copy code
 
-Security depends on determinism:
-
-- Identical inputs MUST produce identical outputs
-- Non-deterministic execution is a protocol fault
-- Determinism proofs are required for validation
-
-Failure triggers telemetry and slashing eligibility.
+Rules:
+- Data only flows **forward**
+- No lateral access
+- No backward mutation
 
 ---
 
-## 7. Artifact Security
+## 5. Identity & Access Control
 
-Artifacts are secured via:
-- Canonical serialization
-- Content-addressed hashing
-- Mandatory signatures
-- Registry anchoring
+### 5.1 Identity Types
 
-Artifacts cannot be edited, replaced, or deleted.
-
----
-
-## 8. Telemetry Security
-
-Telemetry events MUST:
-- Be signed
-- Reference deterministic artifact IDs
-- Be emitted synchronously with actions
-
-Missing or malformed telemetry is a security violation.
+| Actor | Capabilities |
+|-----|--------------|
+| System | Full internal execution |
+| Service | Scoped API access |
+| User | Read-only intelligence |
+| Auditor | Read-only + logs |
 
 ---
 
-## 9. Slashing & Enforcement
+### 5.2 Access Enforcement
 
-### 9.1 Slashing Triggers
-
-- Invalid signatures  
-- Hash mismatches  
-- Determinism violations  
-- Unauthorized actions  
-- Telemetry omission  
-
-### 9.2 Enforcement Properties
-
-- Deterministic
-- Governance-auditable
-- Replay-safe
-- Chain-agnostic
+- Role-Based Access Control (RBAC)
+- Token-scoped permissions
+- No shared credentials
+- No implicit trust between services
 
 ---
 
-## 10. Cross-Chain Security
+## 6. Data Security Controls
 
-Cross-chain operations enforce:
-- Original artifact ID preservation
-- Source-chain attestation
-- Replay protection
-- Finality checks before acceptance
+### 6.1 Data at Rest
 
-No cross-chain trust assumptions are made.
+- **No raw medical data persisted**
+- All stored objects:
+  - Hashed identifiers
+  - Immutable records
+  - Versioned artifacts
 
----
+### 6.2 Data in Transit
 
-## 11. Governance Security
-
-Governance actions require:
-- On-chain voting
-- Deterministic proposal execution
-- Artifact emission for every decision
-
-Emergency powers are explicitly disallowed.
+- TLS 1.3 mandatory
+- No plaintext internal APIs
+- Mutual TLS for service-to-service calls
 
 ---
 
-## 12. Data Protection & Privacy
+## 7. Model & Execution Integrity
 
-The system enforces:
-- No raw data storage on-chain
-- No PII in artifacts or telemetry
-- Hash-only references to sensitive data
+### 7.1 Model Registry Protections
 
-Compliance with LGPD / GDPR principles is inherent.
+- Models are **append-only**
+- Version immutability enforced
+- Training data referenced by hash only
 
----
+### 7.2 Execution Context Guarantees
 
-## 13. Failure Containment
+Every intelligence output is bound to:
 
-Security failures are:
-- Isolated per node
-- Non-propagating
-- Fully auditable
+- Input checksum
+- Model version
+- Runtime environment hash
+- Timestamp
 
-The system degrades safely without global failure.
-
----
-
-## 14. Auditability
-
-The following are fully auditable:
-- Inference execution
-- Validation outcomes
-- Governance actions
-- Slashing events
-- Cross-chain movements
-
-Audit trails are immutable.
+This enables **full replay verification**.
 
 ---
 
-## 15. Non-Negotiable Security Rule
+## 8. API Security
 
-**Any action that cannot be deterministically verified is treated as malicious by default.**
+### 8.1 API Surface Rules
+
+- Read-only intelligence access
+- No mutation endpoints exposed
+- Strict schema validation
+- Rate limiting enforced
+
+### 8.2 Forbidden API Actions
+
+- Raw data access
+- Bulk export without audit
+- Free-form query execution
 
 ---
 
-**End of Document**
+## 9. Audit & Compliance
+
+### 9.1 Audit Logging
+
+All critical actions generate immutable logs:
+
+- Intelligence creation
+- Model registration
+- API access
+- Deprecation events
+
+Logs are:
+- Append-only
+- Timestamped
+- Actor-attributed
+
+---
+
+### 9.2 Regulatory Alignment
+
+Designed to align with:
+- LGPD (Brazil)
+- GDPR (EU)
+- HIPAA principles (non-certified)
+
+No compliance claims are made — **only readiness**.
+
+---
+
+## 10. Dependency & Supply Chain Security
+
+- Minimal dependency surface
+- Pinned versions
+- No runtime dependency downloads
+- CI enforces dependency integrity
+
+---
+
+## 11. CI/CD Security Gates
+
+Pipeline must fail if:
+- Schema validation fails
+- Test coverage drops below threshold
+- Security linting fails
+- Unauthorized file changes detected
+
+---
+
+## 12. Security Testing Requirements
+
+Mandatory tests:
+- Access control enforcement
+- Schema validation
+- Immutability checks
+- Unauthorized mutation attempts
+
+Optional (post-hackathon):
+- Fuzzing
+- Penetration testing
+- Formal verification
+
+---
+
+## 13. Incident Response (Minimal)
+
+If a violation occurs:
+1. Halt processing
+2. Invalidate affected outputs
+3. Preserve audit trail
+4. Notify maintainers
+
+No silent failures allowed.
+
+---
+
+## 14. Final Assertion
+
+> MedIntel does not promise perfect security.  
+> It guarantees **controlled failure, traceability, and containment**.
