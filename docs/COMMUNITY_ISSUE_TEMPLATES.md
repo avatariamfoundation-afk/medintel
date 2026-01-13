@@ -1,190 +1,189 @@
-## COMMUNITY_ISSUE_TEMPLATES.md  
+# COMMUNITY_ISSUE_TEMPLATES.md  
 **Repository:** neurogrid-medintel  
-**Audience:** Contributors, Reviewers, Hackathon Judges  
-**Status:** Fully Executional / Paste-Ready  
+**Directory:** `/docs/`  
+**Audience:** Contributors · Reviewers · Hackathon Judges  
+**Status:** Canonical / Paste-Ready  
 **Last Updated:** 2026-01-13
 
 ---
 
 ## 1. Purpose
 
-This document defines the **official issue templates** used in the MedIntel repository to ensure:
-- High-signal community interaction
-- Transparent problem reporting
-- Efficient triage and resolution
-- Judge-visible maturity in open-source process
+This document defines the **standardized issue reporting formats** for the NeuroGrid MedIntel repository.
 
-All templates are designed to **avoid noise**, **prevent artificial engagement**, and **maintain execution focus**.
+It is intentionally placed in `/docs/` to:
+- Remain **judge-visible without GitHub UI navigation**
+- Demonstrate **process maturity** independent of platform tooling
+- Serve as the **single source of truth** for community interaction rules
 
----
-
-## 2. Issue Governance Principles
-
-All issues must:
-- Be factual and reproducible
-- Reference documentation where applicable
-- Avoid speculative or vague requests
-- Respect defined medical, ethical, and technical boundaries
-
-Issues that do not meet these criteria may be closed with explanation.
+This project prioritizes **signal over volume**, **clarity over engagement**, and **execution over discussion**.
 
 ---
 
-## 3. Bug Report Template
+## 2. Community Interaction Principles
 
-**File:** `.github/ISSUE_TEMPLATE/bug_report.md`
+All community issues must adhere to the following principles:
 
-```markdown
+1. **Deterministic** – Clearly reproducible or verifiable  
+2. **Scoped** – Within MedIntel’s documented medical boundaries  
+3. **Non-Clinical** – No diagnosis, treatment, or medical advice  
+4. **Actionable** – Leads to a concrete outcome  
+
+Issues failing these principles may be closed with explanation.
+
 ---
-name: Bug Report
-about: Report a reproducible issue in MedIntel
-title: "[BUG] "
-labels: bug
-assignees: ""
+
+## 3. Standard Issue Categories
+
+The MedIntel project recognizes **four issue classes**:
+
+1. Bug Report  
+2. Documentation Issue  
+3. Feature / Enhancement Proposal  
+4. Research or Integration Inquiry  
+
+Each class follows a strict format.
+
 ---
 
-## Description
-Provide a clear and concise description of the bug.
+## 4. Bug Report Template
 
-## Steps to Reproduce
+### Bug Report — Required Fields
+
+Title:
+[BUG] Short, factual description
+
+Description:
+Clear explanation of the observed issue.
+
+Steps to Reproduce:
 1.
 2.
 3.
 
-## Expected Behavior
-Describe what should have happened.
+Expected Behavior:
+What should happen under correct operation.
 
-## Actual Behavior
-Describe what actually happened.
+Actual Behavior:
+What actually happens.
 
-## Environment
-- OS:
-- Python Version:
-- Branch / Commit:
+Environment:
 
-## Additional Context
-Logs, screenshots, or references (if applicable).
+Operating System:
 
----
+Python Version:
 
-## 4. Documentation Issue Template
-File: .github/ISSUE_TEMPLATE/documentation.md
+Repository Commit / Branch:
 
-```markdown
----
-name: Documentation Issue
-about: Report missing, unclear, or incorrect documentation
-title: "[DOCS] "
-labels: documentation
-assignees: ""
----
-
-## Affected Document
-Specify file path(s).
-
-## Issue Description
-What is unclear, incorrect, or missing?
-
-## Suggested Improvement
-Optional but encouraged.
-
-## Impact
-Low / Medium / High (brief explanation).
+Evidence:
+Logs, screenshots, or output traces (if available).
 
 ---
 
-## 5. Feature Request Template
-File: .github/ISSUE_TEMPLATE/feature_request.md
+## 5. Documentation Issue Template
 
-```markdown
----
-name: Feature Request
-about: Propose a new feature or enhancement
-title: "[FEATURE] "
-labels: enhancement
-assignees: ""
----
+### Documentation Issue — Required Fields
 
-## Problem Statement
-What problem does this feature address?
+Title:
+[DOCS] Affected document name
 
-## Proposed Solution
-Describe the solution at a high level.
+Affected File(s):
+Path(s) under /docs/
 
-## Alignment Check
-- Fits MedIntel medical scope boundaries: Yes / No
-- Introduces clinical claims: Yes / No
+Issue Description:
+What is unclear, missing, or incorrect?
 
-## Alternatives Considered
-Briefly describe any alternatives.
+Suggested Improvement:
+(Optional but encouraged)
 
-## Additional Notes
-Optional context.
+Impact Level:
+Low / Medium / High
 
 ---
 
-## 6. Research / Integration Inquiry Template
-File: .github/ISSUE_TEMPLATE/integration.md
+## 6. Feature / Enhancement Proposal Template
 
-```markdown
----
-name: Research or Integration Inquiry
-about: Discuss potential research or system integration
-title: "[INTEGRATION] "
-labels: discussion
-assignees: ""
+### Feature Request — Required Fields
+
+Title:
+[FEATURE] Concise description
+
+Problem Statement:
+What limitation or gap does this address?
+
+Proposed Solution:
+High-level description (no implementation required).
+
+Scope Alignment:
+
+Within MedIntel medical boundaries: Yes / No
+
+Introduces clinical inference: Yes / No
+
+Alternatives Considered:
+Brief comparison.
+
+Risk Notes:
+Any potential ethical, safety, or misuse considerations.
+
 ---
 
-## Inquiry Type
+## 7. Research or Integration Inquiry Template
+
+### Research / Integration Inquiry — Required Fields
+
+Title:
+[INTEGRATION] or [RESEARCH] Topic
+
+Inquiry Type:
 Research / Tool Integration / API Usage / Other
 
-## Description
-Clearly describe the inquiry.
+Description:
+Clear explanation of the inquiry.
 
-## Assumptions
-List any assumptions being made.
+Assumptions:
+List assumptions being made.
 
-## References
-Links or citations (if applicable).
+References:
+Papers, tools, or external systems (if applicable).
 
-## Non-Clinical Confirmation
-I confirm this inquiry does not request clinical decision-making.
-
----
-
-## 7. Invalid Issue Categories (Will Be Closed)
-The following will be closed with explanation:
-
-Requests for medical diagnosis or treatment
-
-Regulatory or legal advice requests
-
-Vague “ideas” without problem definition
-
-Spam, marketing, or engagement farming
+Non-Clinical Confirmation:
+I confirm this inquiry does not request or imply medical advice.
 
 ---
 
-## 8. Judge-Facing Note
-These templates demonstrate:
+## 8. Out-of-Scope Submissions (Will Be Closed)
 
-Mature open-source governance
+The following are explicitly **not permitted**:
 
-High signal-to-noise ratio
+- Medical diagnosis or treatment requests  
+- Regulatory or legal advice  
+- Vague ideation without a problem statement  
+- Marketing, promotion, or engagement farming  
 
-Responsible handling of medical-adjacent software
-
-Readiness for community growth post-hackathon
+Closures will include a brief rationale.
 
 ---
 
-## 9. Maintenance Policy
-Templates may evolve as the project scales, but:
+## 9. Judge-Facing Rationale
 
-Changes will be documented
+This document demonstrates:
 
-Historical issues remain auditable
+- Open-source governance maturity  
+- Responsible handling of medical-adjacent software  
+- Clear contributor expectations  
+- Readiness for post-hackathon community scaling  
 
-Transparency is preserved
+It intentionally avoids performative engagement metrics.
 
+---
 
+## 10. Maintenance & Evolution
+
+- This document may evolve as MedIntel scales
+- Changes will be versioned and documented
+- Historical issues remain auditable
+
+---
+
+**End of Document**
