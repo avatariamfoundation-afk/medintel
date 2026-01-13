@@ -2,7 +2,6 @@
 **Repository:** neurogrid-medintel  
 **Audience:** Contributors, Reviewers, Hackathon Judges  
 **Status:** Fully Executional / Paste-Ready  
-**Location:** `.github/ISSUE_TEMPLATE/`  
 **Last Updated:** 2026-01-13
 
 ---
