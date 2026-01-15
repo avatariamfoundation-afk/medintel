@@ -1,4 +1,4 @@
-# NeuroGrid–MedIntel Runnable Demo Evidence
+# NEUROGRID-MEDINTEL_RUNNABLE_DEMO_EVIDENCE.md
 
 ## Environment
 - OS: Windows 10
