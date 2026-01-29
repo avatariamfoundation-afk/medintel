@@ -1,3 +1,4 @@
+![CI](https://github.com/avatariamfoundation-afk/neurogrid-medintel/actions/workflows/ci.yml/badge.svg)
 # MedIntel  
 **Deterministic Medical AI Orchestration Layer (Non-Diagnostic, Open-Source)**
 
