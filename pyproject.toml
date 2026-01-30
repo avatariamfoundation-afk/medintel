@@ -1,10 +1,89 @@
+[build-system]
+requires = ["setuptools>=69.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# =========================
+# Project Metadata
+# =========================
+[project]
+name = "neurogrid-medintel"
+version = "0.1.0"
+description = "Clinical AI and medical intelligence layer for the NeuroGrid ecosystem"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Proprietary" }
+authors = [
+  { name = "NeuroGrid Core Team" }
+]
+
+dependencies = [
+  "numpy>=1.26",
+  "pydantic>=2.6",
+]
+
+# =========================
+# Package Discovery (SRC LAYOUT)
+# =========================
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# =========================
+# Pytest Configuration
+# =========================
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = """
+  --strict-markers
+  --disable-warnings
+  --cov=medintel
+  --cov-report=term-missing
+  --cov-fail-under=80
+"""
+
+# =========================
+# Coverage Configuration
+# =========================
+[tool.coverage.run]
+branch = true
+source = ["medintel"]
+omit = [
+  "tests/*",
+  "**/__init__.py"
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+# =========================
+# Bandit (Security Static Analysis)
+# =========================
 [tool.bandit]
 exclude_dirs = ["tests", "venv", ".venv"]
 skips = ["B101"]
 severity = "MEDIUM"
 confidence = "MEDIUM"
-[tool.pytest.ini_options]
-minversion = "7.0"
-addopts = "--cov=medintel --cov-report=term-missing --cov-fail-under=80"
-testpaths = ["tests"]
 
+# =========================
+# Ruff (Linting & Formatting)
+# =========================
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+select = ["E", "F", "I", "B"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+# =========================
+# MyPy (Optional – Future-Ready)
+# =========================
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+exclude =
