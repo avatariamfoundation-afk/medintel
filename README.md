@@ -5,6 +5,7 @@ Medical Intelligence Interface (Stubbed / Non-Clinical)
 
 ## Executive Summary
 MedIntel is the off-chain intelligence interface layer of the NeuroGrid ecosystem.
+MedIntel is intentionally non-executing during the hackathon.
 
 This repository defines how medical AI, analytics pipelines, and remote patient monitoring logic could integrate with NeuroGrid — without performing diagnosis, treatment, or autonomous clinical decision-making.
 
