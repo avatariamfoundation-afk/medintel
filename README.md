@@ -1,3 +1,10 @@
+## System Context
+This repository is part of the NeuroGrid system.  
+See the full system overview here:  
+➡️ [NeuroGrid System Overview](link-to-core/SYSTEM_OVERVIEW.md)
+
+---
+
 ## NeuroGrid – MedIntel Layer
 Medical Intelligence Interface (Stubbed / Non-Clinical)
 
